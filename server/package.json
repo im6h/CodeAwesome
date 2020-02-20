@@ -1,0 +1,38 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "nodemon ./src/server.ts",
+    "start": "nodemon ./dist/server.js",
+    "prod": "npm run build && npm run start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.1",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "arrowParens": "avoid"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.7.1"
+  }
+}
