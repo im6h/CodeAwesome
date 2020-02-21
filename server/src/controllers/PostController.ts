@@ -6,6 +6,7 @@ import logger from '../Logs/Logger';
 // create class
 class PostController {
   constructor() {}
+
   // get all posts
   async getPosts(request: Request, response: Response): Promise<void> {
     const posts = await Post.find({});
@@ -19,6 +20,7 @@ class PostController {
       response.status(405).json(logger.logError('Have an error'));
     }
   }
+
   // get post by id
   async getPost(request: Request, response: Response): Promise<void> {
     const post = await Post.findOne({ _id: request.params.id });
@@ -28,6 +30,7 @@ class PostController {
       response.status(404).json(logger.logError('Not found'));
     }
   }
+
   // create post
   async createPost(request: Request, response: Response): Promise<void> {
     const post = new Post(request.body);
@@ -40,15 +43,22 @@ class PostController {
         response.status(405).json(logger.logError(error));
       });
   }
+
   // update post by id
   async updatePost(request: Request, response: Response): Promise<void> {
-    const post = Post.findOne({ _id: request.params.id });
-    if (post) {
-      response.status(200).json(logger.logSuccess(post));
-    } else {
-      response.status(404).json(logger.logError('Not found post'));
+    try {
+      let id: string = request.params['id'];
+      let body = request.body;
+      Post.findByIdAndUpdate(id, body)
+        .then(res => {
+          response.status(200).json(logger.logSuccess(res));
+        })
+        .catch(err => response.status(201).json(logger.logError(err)));
+    } catch (e) {
+      response.status(405).json(logger.logError(e));
     }
   }
+
   // delete post by id
   async deletePost(request: Request, response: Response): Promise<void> {
     const post = Post.findOne({ _id: request.params.id });
@@ -64,6 +74,8 @@ class PostController {
     }
   }
 }
+// create new instance
 const postController = new PostController();
-// export PostController instance
+
+// export instance
 export default postController;
