@@ -1,3 +1,13 @@
+/***
+ *
+ * class CommentController relate comment
+ * create comment
+ * update comment
+ * get all comment on post
+ * get comment on post
+ *
+ * ***/
+
 // require module and model
 import Comment from '../models/Comment';
 import { Request, Response } from 'express';
@@ -13,15 +23,17 @@ class CommentController {
     request: Request,
     response: Response
   ): Promise<void> {
-    const comments = await Comment.find({ post: request.params.id });
-    if (comments) {
-      if (comments.length > 0) {
-        response.status(200).json(logger.logSuccess(comments));
-      } else {
-        response.status(200).json(logger.logSuccess('No comments'));
+    try {
+      const comments = await Comment.find({ post: request.params.id });
+      if (comments) {
+        if (comments.length > 0) {
+          response.status(200).json(logger.logSuccess(comments));
+        } else {
+          response.status(200).json(logger.logSuccess('No comments'));
+        }
       }
-    } else {
-      response.status(405).json(logger.logError('Have an error'));
+    } catch (error) {
+      response.status(405).json(logger.logError(error));
     }
   }
 
@@ -31,17 +43,22 @@ class CommentController {
     response: Response
   ): Promise<void> {
     try {
-      const comment = new Comment(request.body);
-      comment
-        .save()
-        .then(async res => {
-          let id = request.params['id'];
-          await Post.findByIdAndUpdate(id, { $push: { comments: comment } });
-          response.status(200).json(logger.logSuccess(res));
-        })
-        .catch(e => response.status(201).json(logger.logError(e)));
+      const post = await Post.findOne({ _id: request.params['id'] });
+      if (post) {
+        const comment = new Comment(request.body);
+        comment
+          .save()
+          .then(async res => {
+            let id = request.params['id'];
+            await Post.findByIdAndUpdate(id, { $push: { comments: comment } });
+            response.status(200).json(logger.logSuccess(res));
+          })
+          .catch(e => response.status(400).json(logger.logError(e)));
+      } else {
+        response.status(404).json(logger.logError('Not found post'));
+      }
     } catch (e) {
-      response.status(201).json(logger.logError(e));
+      response.status(405).json(logger.logError(e));
     }
   }
 
@@ -50,16 +67,18 @@ class CommentController {
     request: Request,
     response: Response
   ): Promise<void> {
-    const comment = Comment.findOne({ _id: request.params.id });
-    if (comment) {
-      comment
-        .remove()
-        .then(() => response.status(200).json(logger.logSuccess('Deleted')))
-        .catch(error =>
-          response.status(405).json(logger.logError('Have an error'))
-        );
-    } else {
-      response.status(405).json(logger.logError('Have an error'));
+    try {
+      const comment = Comment.findOne({ _id: request.params.id });
+      if (comment) {
+        comment
+          .remove()
+          .then(() => response.status(200).json(logger.logSuccess('Deleted')))
+          .catch(error => response.status(400).json(logger.logError(error)));
+      } else {
+        response.status(404).json(logger.logError('Not found'));
+      }
+    } catch (error) {
+      response.status(405).json(logger.logError(error));
     }
   }
 }
