@@ -11,7 +11,7 @@
 // require module and model
 import Comment from '../models/Comment';
 import { Request, Response } from 'express';
-import logger from '../Logs/Logger';
+import logger from '../logs/Logger';
 import Post from '../models/Post';
 
 // init class

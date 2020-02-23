@@ -12,7 +12,7 @@
 // require module and model
 import { Request, Response } from 'express';
 import Post from '../models/Post';
-import logger from '../Logs/Logger';
+import logger from '../logs/Logger';
 
 // create class
 class PostController {
