@@ -31,13 +31,17 @@
             </a>
             <a
               class="block flex items-center hover:text-gray-700 md:mr-10 mr-4 text-xl"
-              href="https://www.facebook.com/vkgsan"
+              href="https://www.linkedin.com/in/vu-hai-dang-6157081a1/"
               target="_blank"
             >
-              <i class="fab fa-facebook"></i>
+              <i class="fab fa-linkedin"></i>
             </a>
-            <a class="block flex items-center hover:text-gray-700 text-xl">
-              <i class="far fa-kiss-wink-heart"></i>
+            <a
+              href="https://www.facebook.com/vkgsan"
+              target="_blank"
+              class="block flex items-center hover:text-gray-700 text-xl"
+            >
+              <i class="fab fa-facebook"></i>
             </a>
           </div>
         </div>
