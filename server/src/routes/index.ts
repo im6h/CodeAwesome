@@ -1,6 +1,24 @@
 // require module and controller
 import postController from '../controllers/PostController';
 import commentController from '../controllers/CommentController';
+import fileController from '../controllers/FileController';
+import multer from 'multer';
+
+// config multer
+const storage = multer.diskStorage({
+  destination: function(req, file, callback) {
+    callback(null, './src/uploads/');
+  },
+  filename: function(req, file, callback) {
+    callback(null, new Date().toISOString() + file.originalname);
+  },
+});
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5,
+  },
+});
 
 // create class
 class Router {
@@ -28,6 +46,13 @@ class Router {
     app
       .route('/v1/api/comment/:id')
       .delete(commentController.deleteCommentPost);
+  }
+
+  // router for handle file
+  public fileRouter(app: any): void {
+    app
+      .route('/v1/file')
+      .post(upload.single('image'), fileController.uploadFile);
   }
 }
 

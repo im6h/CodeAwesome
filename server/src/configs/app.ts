@@ -25,11 +25,13 @@ class App {
     // config app
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: true }));
+    this.app.use('/src/upload', express.static('src/uploads'));
     this.app.use(cors());
 
     // config router
     router.postRouter(this.app);
     router.commentRouter(this.app);
+    router.fileRouter(this.app);
   }
 
   // config database
