@@ -49,8 +49,20 @@
 </template>
 
 <script>
+import Modal from '../components/Modal';
 export default {
   name: 'Home',
+  data() {
+    return {
+      show: false,
+    };
+  },
+  components: { Modal },
+  methods: {
+    showModal() {
+      this.show = !this.show;
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
