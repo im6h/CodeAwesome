@@ -3,8 +3,8 @@
     <navbar />
     <div class="container pt-20 pb-8 mx-auto">
       <div class="pr-6 pl-6">
-        <div class="my-auto" v-for="(item, index) in total" :key="index">
-          <post-card />
+        <div class="my-auto" v-for="(item, index) in totalNumber" :key="index">
+          <post-card :post="item" />
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@ import PostCard from '@/components/Post__Card.vue';
   },
 })
 export default class ListPost extends Vue {
-  private total: Number = 10;
+  private totalNumber: Number = 10;
 }
 </script>
 <style lang="scss"></style>

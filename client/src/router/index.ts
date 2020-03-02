@@ -11,8 +11,13 @@ const routes = [
   },
   {
     path: '/posts',
-    name: 'ListPost.vue',
+    name: 'ListPost',
     component: () => import('../views/ListPost.vue'),
+  },
+  {
+    path: '/posts/:id',
+    name: 'DetailPost',
+    component: () => import('../views/DetailPost.vue'),
   },
 ];
 

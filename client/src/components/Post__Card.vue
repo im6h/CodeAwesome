@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/">
+  <router-link :to="{ name: 'DetailPost', params: { id: item } }">
     <div class="rounded overflow-hidden  md:w-full w-full">
       <div class="py-4">
         <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
@@ -30,7 +30,9 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 @Component
-export default class PostCard extends Vue {}
+export default class PostCard extends Vue {
+  @Prop() item?: Object;
+}
 </script>
 
 <style scoped lang="scss"></style>
