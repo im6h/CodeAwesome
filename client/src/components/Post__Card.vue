@@ -1,9 +1,9 @@
 <template>
-  <router-link :to="{ name: 'DetailPost', params: { id: item } }">
+  <a :href="post.url" target="_blank">
     <div class="rounded overflow-hidden  md:w-full w-full">
       <div class="py-4">
-        <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
-        <p class="text-gray-700 text-base">
+        <div class="font-bold text-xl mb-2">{{ post.title }}</div>
+        <p v-if="post.content" class="text-gray-700 text-base">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
           quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
           nihil.
@@ -25,13 +25,14 @@
         <hr class="mt-6" />
       </div>
     </div>
-  </router-link>
+  </a>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 @Component
 export default class PostCard extends Vue {
-  @Prop() item?: Object;
+  @Prop() post!: Object;
+  created() {}
 }
 </script>
 
