@@ -53,22 +53,22 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 @Component
 export default class Modal extends Vue {
-  @Prop({ default: true }) center!: Boolean;
-  @Prop({ default: false }) right!: Boolean;
-  @Prop({ default: false }) hiddenClose!: Boolean;
+  @Prop({ default: true }) center!: boolean;
+  @Prop({ default: false }) right!: boolean;
+  @Prop({ default: false }) hiddenClose!: boolean;
   @Prop() onHideCallback!: Function;
-  @Prop() name!: String;
+  @Prop() name!: string;
   @Prop({
     default: () => ({
       width: '480px',
       height: '480px',
     }),
   })
-  styleCustom!: Object;
+  styleCustom!: object;
 
   public onCallback: Function | undefined;
-  public payload: Object = {};
-  public visible: Boolean = true;
+  public payload: object = {};
+  public visible: boolean = true;
 
   listenOnCallback() {
     if (typeof this.onCallback === 'function') {

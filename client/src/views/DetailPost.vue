@@ -49,7 +49,7 @@ import PostComment from '@/components/Post__Comment.vue';
   },
 })
 export default class DetailPost extends Vue {
-  @Prop() item!: Object;
+  @Prop() item!: object;
 }
 </script>
 <style lang="scss">
