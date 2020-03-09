@@ -4,7 +4,7 @@
     <div class="container pt-20 pb-8 mx-auto">
       <div class="pr-6 pl-6">
         <div class="my-auto" v-for="(item, index) in hotNews" :key="index">
-          <post-card :post="item" />
+          <post-card :post="item" :id="index" />
         </div>
       </div>
     </div>

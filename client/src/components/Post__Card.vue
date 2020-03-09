@@ -1,5 +1,5 @@
 <template>
-  <a :href="post.url" target="_blank">
+  <router-link :to="{ name: 'DetailPost', params: { id: id } }">
     <div class="rounded overflow-hidden  md:w-full w-full">
       <div class="py-4">
         <div class="font-bold text-xl mb-2">{{ post.title }}</div>
@@ -25,13 +25,14 @@
         <hr class="mt-6" />
       </div>
     </div>
-  </a>
+  </router-link>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 @Component
 export default class PostCard extends Vue {
-  @Prop() post!: Object;
+  @Prop() post!: object;
+  @Prop() id!: number;
   created() {}
 }
 </script>

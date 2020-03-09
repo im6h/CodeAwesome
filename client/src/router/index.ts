@@ -5,6 +5,14 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '*',
+    redirect: '/404',
+  },
+  {
+    path: '/404',
+    component: () => import('../views/Error/index.vue'),
+  },
+  {
     path: '/',
     name: 'Home',
     component: () => import('../views/Home.vue'),
@@ -18,6 +26,11 @@ const routes = [
     path: '/posts/:id',
     name: 'DetailPost',
     component: () => import('../views/DetailPost.vue'),
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import('../views/Admin/index.vue'),
   },
 ];
 

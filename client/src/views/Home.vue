@@ -8,7 +8,11 @@
         class="home--image sm:w-full"
         style="width: 30%; display: flex;flex-direction: column; align-items: center"
       >
-        <img class="mt-24" src="../assets/images/Avatar-crop.png" alt="" />
+        <img
+          class="md:mt-24 mt-12"
+          src="../assets/images/Avatar-crop.png"
+          alt=""
+        />
         <p class="text-2xl text-red-500 mt-4">
           Code<span class="text-green-500">Awesome</span>
         </p>
